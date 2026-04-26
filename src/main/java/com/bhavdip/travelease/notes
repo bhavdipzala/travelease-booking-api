@@ -1,0 +1,74 @@
+use of @Transacational, and where to put, and purpose, and all around it.
+
+add deleteallpacks meth
+
+pathvars names? mapping {id} to packageId, or keeping {id} to id?
+
+@ResponseStatus and ResponseEntity, and all http status/response codes
+
+add change password meth
+
+
+which DTOs to use when we dont want to create but update a resource (user, bookings, etc), i mean the same used for creation,
+or a different DTO for updates purposes, as like DTOs must require all fields if we add @valid at the controller request
+and for updates we usually dont require all the fields,
+and if dont validate, then correct values may override by non correct, like if we already have valid name etc, and then if
+we dont validate incorrect values (null/blanks) may override.
+
+
+PHASE 2:
+
+4. JWT Authentication
+@Operation(summary = "Get all travel packages")
+
+
+
+patch vs put for a few methods where applicable. and like the diff bw both of them, and how they work differently, and
+when to use what, and what happens when null fields supplied wether the valid data will be overridden by nulls, etc.
+
+
+
+Issue faces:
+1.
+After completing the initial phase of the project, while testing the APIs, the /api/users endpoint returned
+a 500 Internal Server Error, even though other endpoints like /api/bookings and /api/packages were working correctly.
+I carefully rechecked the entire project code, but everything appeared correct, and the issue still persisted.
+To investigate further, I examined the database to verify whether all tables were created as expected. I discovered
+that the User table had not been created at all, while the booking and travelpackage tables were successfully created.
+After researching the issue, I identified that user is a reserved keyword in PostgreSQL, which caused the table creation
+to fail. I resolved the problem by explicitly renaming the table using the @Table(name = "users") annotation in the User
+entity. This experience helped me understand the importance of avoiding reserved keywords and properly configuring ORM
+mappings in database-driven applications.
+
+
+
+
+
+
+
+
+
+
+
+
+# docker container setup for setting up postgres DB for the project:
+docker run --name postgresDB \
+-e POSTGRES_USER=bhavdip \
+-e POSTGRES_PASSWORD=bhavdip123 \
+-e POSTGRES_DB=travelease \
+-p 5432:5432 \
+-v postgres-data:/var/lib/postgresql \
+-d postgres
+
+
+# to connect to the database created, in the terminal:
+docker exec -it postgresDB psql -U bhavdip -d travelease
+(after this we will be inside the database, and can run sql queries)
+INSERT INTO users (name, email, password, role, blocked)
+VALUES (
+  'Admin',
+  'admin',
+  '$2a$12$p6XK1lTNbhGkG08dzFmcgeF4Hf5g5n.MLQar7xdnQv9l.4Yu3Y4Ci',
+  'ADMIN',
+  false
+);
