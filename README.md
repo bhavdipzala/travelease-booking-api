@@ -1,7 +1,7 @@
 # TravelEase
 
 A RESTful API backend for a travel package booking system, built with Java and Spring Boot.
-Supports two roles — **User** and **Admin** — with HTTP Basic Authentication and role-based 
+Supports two roles, **User** and **Admin**, with HTTP Basic Authentication and role-based 
 access control. Users can browse, wishlist, and book travel packages, while admins manage 
 packages, users, and bookings through dedicated admin endpoints.
 
@@ -111,75 +111,6 @@ Register via `POST /api/users` (no auth required), then use credentials on subse
 
 ---
 
-## Getting Started
-
-### Prerequisites
-- Java
-- PostgreSQL
-- Maven
-
-### Setup
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/your-username/travelease.git
-   cd travelease
-   ```
-
-2. **Create a PostgreSQL database**
-   ```sql
-   CREATE DATABASE travelease;
-   ```
-
-3. **Configure environment**
-
-   Update `src/main/resources/application.properties` with your DB credentials:
-   ```properties
-   spring.datasource.url=jdbc:postgresql://localhost:5432/travelease
-   spring.datasource.username=YOUR_DB_USERNAME
-   spring.datasource.password=YOUR_DB_PASSWORD
-   spring.jpa.hibernate.ddl-auto=update
-   ```
-   > ⚠️ Do not commit real credentials to version control. Use environment variables in production.
-
-4. **Run the application**
-   ```bash
-   mvn spring-boot:run
-   ```
-
-5. **Access Swagger UI**
-
-   Open [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html) to explore and test all endpoints interactively.
-
----
-
-## Sample Request — Register User
-
-```json
-POST /api/users
-Content-Type: application/json
-
-{
-  "name": "John Doe",
-  "email": "john@example.com",
-  "password": "password123"
-}
-```
-
-## Sample Request — Create Booking
-
-```json
-POST /api/bookings
-Authorization: Basic <base64(email:password)>
-Content-Type: application/json
-
-{
-  "userId": 1,
-  "packageId": 2
-}
-```
-
----
 
 ## Booking Status Values
 
@@ -195,5 +126,4 @@ Content-Type: application/json
 ## Author
 
 **Bhavdip Zala**  
-MSc Computer Science — University of Kent  
-[zalabhavdip01@gmail.com](mailto:zalabhavdip01@gmail.com)
+MSc Computer Science — University of Kent
