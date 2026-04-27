@@ -3,6 +3,7 @@ package com.bhavdip.travelease.controller;
 
 import com.bhavdip.travelease.dto.user.UserRequestDTO;
 import com.bhavdip.travelease.dto.user.UserResponseDTO;
+import com.bhavdip.travelease.dto.user.UserUpdateRequestDto;
 import com.bhavdip.travelease.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -66,7 +67,7 @@ public class UserController {
     @PatchMapping("/{userId}/update")
     @PreAuthorize("hasRole('ADMIN')")
     public UserResponseDTO updateUser(@PathVariable Long userId,
-                                      @RequestBody @Valid UserRequestDTO userRequest){
+                                      @RequestBody @Valid UserUpdateRequestDto userRequest){
         return userService.updateUser(userId, userRequest);
     }
 

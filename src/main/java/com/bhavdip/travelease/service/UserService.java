@@ -3,6 +3,7 @@ package com.bhavdip.travelease.service;
 
 import com.bhavdip.travelease.dto.user.UserRequestDTO;
 import com.bhavdip.travelease.dto.user.UserResponseDTO;
+import com.bhavdip.travelease.dto.user.UserUpdateRequestDto;
 import com.bhavdip.travelease.exception.BadRequestException;
 import com.bhavdip.travelease.exception.ResourceNotFoundException;
 import com.bhavdip.travelease.model.Role;
@@ -110,7 +111,7 @@ public class UserService {
         return mapToUserResponseDTO(user);
     }
 
-    public UserResponseDTO updateUser(Long userId, UserRequestDTO userRequest){
+    public UserResponseDTO updateUser(Long userId, UserUpdateRequestDto userRequest){
 
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found!"));
