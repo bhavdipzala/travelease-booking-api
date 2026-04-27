@@ -1,6 +1,9 @@
 # TravelEase
 
-A RESTful API for a travel package booking system built with Java and Spring Boot. Users can browse and book travel packages, while admins manage packages, users, and bookings through a role-based access control system.
+A RESTful API backend for a travel package booking system, built with Java and Spring Boot.
+Supports two roles — **User** and **Admin** — with HTTP Basic Authentication and role-based 
+access control. Users can browse, wishlist, and book travel packages, while admins manage 
+packages, users, and bookings through dedicated admin endpoints.
 
 ---
 
