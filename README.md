@@ -68,7 +68,7 @@ Register via `POST /api/users` (no auth required), then use credentials on subse
 | GET | `/api/users` | ADMIN | Get all users |
 | GET | `/api/users/{userId}` | ADMIN | Get user by ID |
 | GET | `/api/users/search?email=` | ADMIN | Search user by email |
-| PATCH | `/api/users/{userId}/update` | ADMIN | Update user details |
+| PATCH | `/api/users/{userId}/update` | ADMIN | Update user name and email |
 | PATCH | `/api/users/{userId}/block` | ADMIN | Block a user |
 | PATCH | `/api/users/{userId}/unblock` | ADMIN | Unblock a user |
 | DELETE | `/api/users/{userId}` | ADMIN | Delete a user |
@@ -79,11 +79,15 @@ Register via `POST /api/users` (no auth required), then use credentials on subse
 
 | Method | Endpoint | Auth | Description |
 |--------|----------|------|-------------|
-| GET | `/api/packages` | Public | Get all packages |
+| GET | `/api/packages` | Public | Get all packages (filterable by `destination`, `title`) |
 | GET | `/api/packages/{packageId}` | Public | Get package by ID |
 | POST | `/api/packages` | ADMIN | Create a new package |
 | PATCH | `/api/packages/{packageId}` | ADMIN | Update a package |
 | DELETE | `/api/packages/{packageId}` | ADMIN | Delete a package |
+
+#### Package filter query params (Public):
+- `GET /api/packages?destination=Paris` — packages by destination
+- `GET /api/packages?title=Summer Adventure` — packages by title
 
 ---
 
@@ -107,7 +111,7 @@ Register via `POST /api/users` (no auth required), then use credentials on subse
 ## Getting Started
 
 ### Prerequisites
-- Java 17+
+- Java
 - PostgreSQL
 - Maven
 
@@ -182,15 +186,6 @@ Content-Type: application/json
 | `CANCELLED` | Booking cancelled |
 | `PENDING` | Awaiting confirmation |
 | `FAILED` | Booking failed |
-
----
-
-## Known Limitations & Planned Improvements
-
-- **Authentication**: Currently uses HTTP Basic Auth. Planned upgrade to JWT token-based authentication.
-- **User self-service**: Users cannot currently cancel their own bookings. Planned: extract user identity from security context to allow self-cancellation.
-- **Package filtering**: Filter by destination and title is supported at the repository level. Planned: expose query param filters on `GET /api/packages`.
-- **Credentials**: DB credentials should be managed via environment variables or a secrets manager in production.
 
 ---
 
