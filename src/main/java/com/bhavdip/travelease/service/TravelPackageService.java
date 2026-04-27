@@ -41,6 +41,20 @@ public class TravelPackageService {
                 .toList();
     }
 
+    public List<TravelPackageResponseDTO> getPackagesByDestination(String destination){
+        return travelPackageRepository.findByDestination(destination)
+                .stream()
+                .map(this :: mapToTravelPackageResponseDTO)
+                .toList();
+    }
+
+    public List<TravelPackageResponseDTO> getPackagesByTitle(String title){
+        return travelPackageRepository.findByTitle(title)
+                .stream()
+                .map(this :: mapToTravelPackageResponseDTO)
+                .toList();
+    }
+
     public TravelPackageResponseDTO getTravelPackageById(Long packageId){
         TravelPackage travelPackage = travelPackageRepository.findById(packageId)
                 .orElseThrow(() -> new ResourceNotFoundException("Package not found!"));

@@ -28,7 +28,13 @@ public class TravelPackageController {
     }
 
     @GetMapping
-    public List<TravelPackageResponseDTO> getAllTravelPackages(){
+    public List<TravelPackageResponseDTO> getAllTravelPackages(@RequestParam(required = false) String destination,
+                                                               @RequestParam(required = false) String title){
+        if (destination != null)
+            return travelPackageService.getPackagesByDestination(destination);
+        if (title != null)
+            return travelPackageService.getPackagesByTitle(title);
+
         return travelPackageService.getAllTravelPackages();
     }
 
